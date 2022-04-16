@@ -5,5 +5,30 @@
       "id": 1
     }
   ],
-  "City": []
+  "City": [
+    {
+      "city": "qwe",
+      "population": "123",
+      "country": "ewe",
+      "id": 1
+    },
+    {
+      "city": "qwefr",
+      "population": "123",
+      "country": "ewefrfr",
+      "id": 2
+    },
+    {
+      "city": "qwqeq",
+      "population": "1",
+      "country": "sassa",
+      "id": 3
+    },
+    {
+      "city": "ad",
+      "population": "113",
+      "country": "acc",
+      "id": 4
+    }
+  ]
 }

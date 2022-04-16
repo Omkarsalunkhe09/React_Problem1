@@ -6,6 +6,7 @@ import "./table.css";
 export const Table = () => {
   const [data, setData] = useState([]);
   const [handle, setHandle] = useState([]);
+  const [sort, sortData] = useState([]);
 
   useEffect(() => {
     axios.get(`http://localhost:3001/City`).then((res) => {
@@ -19,13 +20,60 @@ export const Table = () => {
     });
   };
   return (
-    <div
-      style={{
-        marginLeft: "100px",
-        marginTop: "50px",
-      }}
-    >
-      <table>
+    <div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          marginTop: "30px",
+        }}
+      >
+        <div>
+          <button
+            onClick={() => {
+              const sorted = data.sort((a, b) => {
+                // console.log(data.sort((a, b) => a.population - b.population));
+                return a.population - b.population;
+              });
+              sortData([...sorted]);
+            }}
+          >
+            Asc population
+          </button>
+        </div>
+        <div>
+          <button
+            onClick={() => {
+              const sorted = data.sort((a, b) => {
+                return b.population - a.population;
+              });
+              sortData([...sorted]);
+            }}
+          >
+            Dec population
+          </button>
+        </div>
+        <div>
+          <button
+            onClick={() => {
+              const sorted = data.sort((a, b) => {
+                if (a.country < b.country) {
+                  return -1;
+                }
+              });
+              sortData([...sorted]);
+            }}
+          >
+            Filter By country
+          </button>
+        </div>
+      </div>
+      <table
+        style={{
+          margin: "auto",
+          marginTop: "30px",
+        }}
+      >
         <thead>
           <tr>
             <th>id</th>
@@ -40,10 +88,10 @@ export const Table = () => {
           {data.map((e, i) => {
             return (
               <tr key={i}>
-                <td>{e.id}</td>
-                <td>{e.country}</td>
-                <td>{e.city}</td>
-                <td>{e.population}</td>
+                <td className="id">{e.id}</td>
+                <td className="country">{e.country}</td>
+                <td className="city">{e.city}</td>
+                <td className="pop">{e.population}</td>
                 <td>
                   <button>Edit</button>
                 </td>
